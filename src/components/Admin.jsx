@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { BASE_URL } from "../api";
+
 
 const Admin = () => {
   const [formData, setFormData] = useState({
@@ -17,7 +19,7 @@ const Admin = () => {
 
   const handleAddProduct = async () => {
     try {
-      const res = await fetch("http://localhost:3000/products", {
+      const res = await fetch(`${BASE_URL}/products`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

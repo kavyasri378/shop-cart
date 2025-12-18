@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { BASE_URL } from "../api";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -8,7 +9,7 @@ const ProductDetails = () => {
   // 🔹 Fetch single product from backend
   const fetchProductDetails = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/products/${id}`);
+      const res = await fetch(`${BASE_URL}/products/${id}`);
       const data = await res.json();
 
       // Map backend response

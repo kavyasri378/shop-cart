@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { BASE_URL } from "../api";
 
 const ProductList = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -8,7 +9,7 @@ const ProductList = () => {
   // 🔹 Fetch products from backend
   const fetchProducts = async () => {
     try {
-      const res = await fetch("http://localhost:3000/products");
+      const res = await fetch(`${BASE_URL}/products`);
       const data = await res.json();
 
       // backend → frontend mapping
@@ -40,7 +41,7 @@ const ProductList = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/cart", {
+      const res = await fetch(`${BASE_URL}/cart`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

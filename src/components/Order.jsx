@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../api";
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
@@ -14,7 +15,7 @@ const Order = () => {
       return;
     }
 
-    fetch("http://localhost:3000/orders", {
+    fetch(`${BASE_URL}/orders`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -29,7 +30,7 @@ const deleteOrder = async (orderId) => {
   const token = sessionStorage.getItem("token");
 
   try {
-    await fetch(`http://localhost:3000/orders/${orderId}`, {
+    await fetch(`${BASE_URL}/orders/${orderId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`
@@ -48,7 +49,7 @@ const updateOrder = async (order) => {
   const token = sessionStorage.getItem("token");
 
   try {
-    await fetch(`http://localhost:3000/orders/${order._id}`, {
+    await fetch(`${BASE_URL}/orders/${order._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

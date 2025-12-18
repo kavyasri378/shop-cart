@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../api";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -17,7 +18,7 @@ const Cart = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/cart", {
+      const res = await fetch(`${BASE_URL}/cart`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -58,7 +59,7 @@ const Cart = () => {
   const token = sessionStorage.getItem("token");
 
   try {
-    await fetch("http://localhost:3000/cart/update", {
+    await fetch(`${BASE_URL}/cart/update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -82,7 +83,7 @@ const removeItem = async (product_id) => {
   );
 
   try {
-    await fetch(`http://localhost:3000/cart/item/${product_id}`, {
+    await fetch(`${BASE_URL}/cart/item/${product_id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`
@@ -105,7 +106,7 @@ const removeItem = async (product_id) => {
     }
 
     try {
-      await fetch("http://localhost:3000/orders", {
+      await fetch(`${BASE_URL}/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

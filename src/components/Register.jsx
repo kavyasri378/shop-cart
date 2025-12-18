@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../api";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +13,7 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/auth/register", {
+      await axios.post(`${BASE_URL}/auth/register`, {
         email,
         password,
         role,
